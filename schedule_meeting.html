@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Meeting</title>
+</head>
+<body>
+    <h1>Schedule a Meeting</h1>
+    <form method="POST" action="/">
+        <!-- Meeting details inputs -->
+        <label for="meeting_date">Date:</label>
+        <input type="date" id="meeting_date" name="meeting_date" required>
+        <br>
+        <label for="meeting_time">Time:</label>
+        <input type="time" id="meeting_time" name="meeting_time" required>
+        <br>
+        <label for="meeting_subject">Subject:</label>
+        <input type="text" id="meeting_subject" name="meeting_subject" required>
+        <br>
+        <!-- Attendees selection -->
+        <label for="attendees">Select Attendees:</label>
+        <select id="attendees" name="attendees[]" multiple required>
+            {% for user in users %}
+                <option value="{{ loop.index0 }}">{{ user['name'] }} ({{ user['email'] }})</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Schedule">
+    </form>
+</body>
+</html>
